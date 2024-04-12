@@ -39,7 +39,9 @@ const useStyles = createStyles((theme) => ({
   },
   buttonsContainer: {
     height: 560,
-    overflowY: 'scroll',
+    overflowY: 'auto',
+    marginRight: '-1px', // Add this line
+    paddingRight: '5px', // Add this line
   },
   buttonsFlexWrapper: {
     gap: 3,
