@@ -37,8 +37,7 @@ export const debugCustomNotification = () => {
         description: 'Notification description',
         type: 'success',
         icon: 'microchip',
-        iconAnimation: 'shake',
-        alignIcon: 'center',
+        showDuration: false,
       },
     },
   ]);
