@@ -44,11 +44,14 @@ code {
 }
 
 ::-webkit-scrollbar {
-  background-color: transparent;
-  padding: 0;
-  margin: 0;
-  width: 0;
-  height: 0;
+  width: 5px;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: radial-gradient(50% 50% at 50% 50%, #393a40 0%, #393a40 90%);
+  background-position: right center; /* Move the background to the right */
+
 }
 
 .toast-inform {
