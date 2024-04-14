@@ -1,8 +1,8 @@
-function lib.addStateHandler(filter, cb)
-    return AddStateBagChangeHandler(filter, '', function(bagName, _, value)
+function lib.addStateHandler(keyfilter, cb, bagfilter)
+    return AddStateBagChangeHandler(keyfilter, bagfilter or '', function(bagName, _, value)
         Wait(0) -- wait a frame for the bag update
 
-        local netId = tonumber(bagName:gsub('entity:', ''), 10)
+        local netId = tonumber(bagName:gsub('entity:', ''), 10) or GetEntityFromStateBagName(bagName);
         local count = 0
         local exists = false
         

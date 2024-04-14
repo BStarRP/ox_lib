@@ -1,16 +1,20 @@
 local core = nil
+local isServer = IsDuplicityVersion()
+local isClient = not isServer
 while lib.hasLoaded() ~= true do
     Wait(1000)
 end
 CreateThread(function()
     while not core do
         core = exports['qb-core']:GetCoreObject()
+        cache:set('core', core)
         cache:set('items', core.Shared.Items)
         cache:set('jobs', core.Shared.Jobs)
         cache:set('items', core.Shared.Items)
         cache:set('jobs', core.Shared.Jobs)
         cache:set('gangs', core.Shared.Gangs)
         cache:set('weapons', core.Shared.Weapons)
+        cache:set('players', core.Functions.GetQBPlayers())
         Wait(100)
     end
 
@@ -33,11 +37,37 @@ CreateThread(function()
         end
     end
 
-    lib.addStateHandler('isLoggedIn', function(ent, netId, value, bagName)
-        cache:set('isLoggedIn', value)
+    if isClient then
+        lib.addStateHandler('isLoggedIn', function(ent, netId, value, bagName)
+            cache:set('isLoggedIn', value)
+        end)
+
+        lib.addStateHandler('PlayerData', function(ent, netId, value, bagName)
+            if LocalPlayer.state.isLoggedIn then
+                cache:set('playerData', core.PlayerData)
+                cache:set('playerJob', core.PlayerData.job)
+                cache:set('playerGang', core.PlayerData.gang)
+                cache:set('playerItems', core.PlayerData.items)
+            else
+                cache:set('playerData', nil)
+                cache:set('playerJob', nil)
+                cache:set('playerGang', nil)
+                cache:set('playerItems', nil)
+            end
+        end)
+    end
+end)
+
+if isServer then
+    RegisterNetEvent('QBCore:client:PlayerLoaded', function()
+        cache:set('players', core.Functions.GetQBPlayers())
+    end)
+    
+    RegisterNetEvent('playerDropped', function()
+        cache:set('players', core.Functions.GetQBPlayers())
     end)
 
-    lib.addStateHandler('PlayerData', function()
-        cache:set('playerData', core.PlayerData)
+    AddEventHandler('QBCore:Server:OnPlayerUnload', function(playerSrc)
+        cache:set('players', core.Functions.GetQBPlayers())
     end)
-end)
+end

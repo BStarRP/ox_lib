@@ -169,7 +169,7 @@ if service == 'loki' then
         return bTable -- Return the new table of kvps
     end
 
-    function lib.logger(source, event, message, ...)
+    function lib.logger(source, resource, event, message, ...)
         if not buffer then
             buffer = {}
 
@@ -198,7 +198,7 @@ if service == 'loki' then
         -- Initializes values table with the message
         local values = {message = message}
 
-        -- Format the args into strings
+        -- Format the args into strings.3022514
         local tags = formatTags(source, ... and string.strjoin(',', string.tostringall(...)) or nil)
         local tagsTable = convertDDTagsToKVP(tags)
 
