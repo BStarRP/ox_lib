@@ -21,7 +21,7 @@ const useStyles = createStyles((theme) => ({
     color: theme.colors.dark[0],
 
     '&:hover': {
-      fill: theme.fn.primaryColor(),
+      fill: '#d45b04',
       '> g > text, > g > svg > path': {
         fill: '#fff',
       },
@@ -34,12 +34,12 @@ const useStyles = createStyles((theme) => ({
     fill: theme.colors.dark[6],
   },
   centerCircle: {
-    fill: theme.fn.primaryColor(),
+    fill: '#d45b04',
     color: '#fff',
     stroke: theme.colors.dark[6],
     strokeWidth: 4,
     '&:hover': {
-      fill: theme.colors[theme.primaryColor][theme.fn.primaryShade() - 1],
+      fill: '#b54d02',
     },
   },
   centerIconContainer: {

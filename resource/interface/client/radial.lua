@@ -120,6 +120,7 @@ end
 function lib.hideRadial()
     if not isOpen then return end
 
+    TriggerEvent('qb-radialmenu:client:onRadialmenuClose')
     SendNUIMessage({
         action = 'openRadialMenu',
         data = false
@@ -299,13 +300,16 @@ end
 lib.addKeybind({
     name = 'ox_lib-radial',
     description = locale('open_radial_menu'),
-    defaultKey = 'z',
+    defaultKey = 'F1',
     onPressed = function()
         if isDisabled then return end
 
         if isOpen then
             return lib.hideRadial()
         end
+
+        TriggerEvent('qb-radialmenu:client:onRadialmenuOpen')
+
 
         if #menuItems == 0 or IsNuiFocused() or IsPauseMenuActive() then return end
 
