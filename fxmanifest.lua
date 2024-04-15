@@ -31,7 +31,6 @@ files {
 }
 
 shared_script 'resource/init.lua'
-shared_script 'resource/init_bstar.lua'
 
 shared_scripts {
     'resource/**/shared.lua',
