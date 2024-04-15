@@ -9,8 +9,9 @@ import LibIcon from '../../components/LibIcon';
 
 const useStyles = createStyles((theme) => ({
   container: {
-    width: 300,
+    width: 'fit-content',
     height: 'fit-content',
+    maxWidth: 400,
     backgroundColor: '#2b2b2bE0',
     padding: 12,
     borderRadius: '5px',
