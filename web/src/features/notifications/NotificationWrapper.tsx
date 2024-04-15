@@ -11,9 +11,9 @@ const useStyles = createStyles((theme) => ({
   container: {
     width: 'fit-content',
     height: 'fit-content',
-    maxWidth: 400,
+    maxWidth: 450,
     backgroundColor: '#2b2b2bE0',
-    padding: 12,
+    padding: 9,
     borderRadius: '5px',
     fontFamily: 'Roboto',
     color: '#ffffff',
@@ -22,18 +22,19 @@ const useStyles = createStyles((theme) => ({
   title: {
     fontWeight: 500,
     lineHeight: 'normal',
+    fontSize: 14.5,
   },
   description: {
-    fontSize: 12,
+    fontSize: 12.5,
     fontWeight: 500,
-    color: theme.colors.dark[2],
+    color: '#ee8a08',
     fontFamily: 'Roboto',
     lineHeight: 'normal',
   },
   descriptionOnly: {
-    fontSize: 14,
+    fontSize: 14.5,
     fontWeight: 500,
-    color: theme.colors.dark[2],
+    color: '#ffffff',
     fontFamily: 'Roboto',
     lineHeight: 'normal',
   },
@@ -183,7 +184,7 @@ const Notifications: React.FC = () => {
                         : 'blue'
                     }
                     style={{ alignSelf: !data.alignIcon || data.alignIcon === 'center' ? 'center' : 'start' }}
-                    size={30}
+                    size={40}
                   >
                     <LibIcon icon={data.icon} fixedWidth size="lg" animation={data.iconAnimation} />
                   </Avatar>
