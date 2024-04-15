@@ -1,5 +1,5 @@
 ---@alias NotificationPosition 'top' | 'top-right' | 'top-left' | 'bottom' | 'bottom-right' | 'bottom-left' | 'center-right' | 'center-left'
----@alias NotificationType 'info' | 'warning' | 'success' | 'error'
+---@alias NotificationType 'info' | 'police' | 'ambulance' | 'warn' | 'success' | 'error'
 ---@alias IconAnimationType 'spin' | 'spinPulse' | 'spinReverse' | 'pulse' | 'beat' | 'fade' | 'beatFade' | 'bounce' | 'shake'
 
 ---@class NotifyProps
@@ -30,7 +30,7 @@ end
 ---@field description? string
 ---@field duration? number
 ---@field position? NotificationPosition
----@field status? 'info' | 'warning' | 'success' | 'error'
+---@field status? 'info' | 'police' | 'ambulance' | 'warn' | 'success' | 'error'
 ---@field id? number
 
 ---@param data DefaultNotifyProps

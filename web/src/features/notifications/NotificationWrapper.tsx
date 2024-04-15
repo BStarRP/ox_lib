@@ -11,11 +11,11 @@ const useStyles = createStyles((theme) => ({
   container: {
     width: 300,
     height: 'fit-content',
-    backgroundColor: theme.colors.dark[6],
-    color: theme.colors.dark[0],
+    backgroundColor: '#2b2b2bE0',
     padding: 12,
-    borderRadius: theme.radius.sm,
+    borderRadius: '5px',
     fontFamily: 'Roboto',
+    color: '#ffffff',
     boxShadow: theme.shadows.sm,
   },
   title: {
@@ -24,12 +24,14 @@ const useStyles = createStyles((theme) => ({
   },
   description: {
     fontSize: 12,
+    fontWeight: 500,
     color: theme.colors.dark[2],
     fontFamily: 'Roboto',
     lineHeight: 'normal',
   },
   descriptionOnly: {
     fontSize: 14,
+    fontWeight: 500,
     color: theme.colors.dark[2],
     fontFamily: 'Roboto',
     lineHeight: 'normal',
@@ -121,15 +123,21 @@ const Notifications: React.FC = () => {
     if (!data.icon) {
       switch (data.type) {
         case 'error':
-          data.icon = 'circle-xmark';
+          data.icon = 'square-xmark';
           break;
         case 'success':
-          data.icon = 'circle-check';
+          data.icon = 'square-check';
           break;
-        case 'warning':
-          data.icon = 'circle-exclamation';
+        case 'warn':
+          data.icon = 'triangle-exclamation';
           break;
-        default:
+        case 'ambulance':
+          data.icon = 'truck-medical';
+          break;
+        case 'police':
+          data.icon = 'building-shield';
+          break;
+        default:           
           data.icon = 'circle-info';
           break;
       }
@@ -162,16 +170,19 @@ const Notifications: React.FC = () => {
                   <Avatar
                     color={
                       data.type === 'error'
-                        ? 'red'
+                        ? '#bf1d1d'
                         : data.type === 'success'
-                        ? 'teal'
-                        : data.type === 'warning'
-                        ? 'yellow'
+                        ? '#20bb44'
+                        : data.type === 'warn'
+                        ? '#ee8a08'
+                        : data.type === 'police'
+                        ? '#1c75d2'
+                        : data.type === 'ambulance'
+                        ? '#bf1d1d'
                         : 'blue'
                     }
                     style={{ alignSelf: !data.alignIcon || data.alignIcon === 'center' ? 'center' : 'start' }}
-                    radius="xl"
-                    size={32}
+                    size={30}
                   >
                     <LibIcon icon={data.icon} fixedWidth size="lg" animation={data.iconAnimation} />
                   </Avatar>
