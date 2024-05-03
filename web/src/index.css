@@ -44,13 +44,13 @@ code {
 }
 
 ::-webkit-scrollbar {
-  width: 5px;
-  border-radius: 4px;
+  width: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: radial-gradient(50% 50% at 50% 50%, #393a40 0%, #393a40 90%);
+  background: radial-gradient(50% 50% at 50% 50%, #ed5007 0%, #ed5007 90%);
   background-position: right center; /* Move the background to the right */
+  border-radius: 14px;
 
 }
 

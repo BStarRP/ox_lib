@@ -25,12 +25,24 @@ const useStyles = createStyles((theme, params: { disabled?: boolean; readOnly?: 
     whiteSpace: 'pre-wrap',
   },
   button: {
+    backgroundColor: '#212121',
     height: 'fit-content',
     width: '100%',
     padding: 10,
+    position: 'relative', 
+    borderRadius: '4px 4px 0 0', 
     '&:hover': {
-      backgroundColor: params.readOnly ? theme.colors.dark[6] : undefined,
+      backgroundColor: params.readOnly ? theme.colors.dark[6] : '#212121',
       cursor: params.readOnly ? 'unset' : 'pointer',
+      '&::after': { 
+        content: '""',
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        width: '100%',
+        height: '2px',
+        backgroundColor: '#ed5007',
+      },
     },
     '&:active': {
       transform: params.readOnly ? 'unset' : undefined,
@@ -45,11 +57,14 @@ const useStyles = createStyles((theme, params: { disabled?: boolean; readOnly?: 
   },
   dropdown: {
     padding: 10,
+    marginLeft: 20,
     color: theme.colors.dark[0],
     fontSize: 14,
     maxWidth: 256,
     width: 'fit-content',
-    border: 'none',
+    borderRadius: '4px 4px 0 0', 
+
+    borderBottom: '2px solid #ed5007',
   },
   buttonStack: {
     gap: 4,
@@ -100,7 +115,7 @@ const ContextButton: React.FC<{
                   : clickContext(buttonKey)
                 : null
             }
-            variant="default"
+            // variant="default"
             disabled={button.disabled}
           >
             <Group position="apart" w="100%" noWrap>
