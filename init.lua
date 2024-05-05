@@ -257,6 +257,39 @@ else
 
         return players
     end
+
+    local rateLimits = {}
+
+	local function isRateLimited(source, eventName, timeout, noWarn)
+		if rateLimits[source]?[eventName] then
+			if (GetGameTimer() - rateLimits[source][eventName]) < timeout + 10 then
+				if not noWarn then warn(('%s (%s) was rate limited on event %s. Executed multiple events within %sms'):format(GetPlayerName(source), source, eventName, timeout)) end
+				return true
+			else
+				rateLimits[source][eventName] = nil
+			end
+		end
+
+		return false
+	end
+
+	local function setRateLimit(source, eventName, timeout)
+		if not rateLimits[source] then rateLimits[source] = {} end
+
+		rateLimits[source][eventName] = GetGameTimer()
+	end
+
+	function lib.registerRateLimitedNetEvent(eventName, timeout, fn, noWarn)
+		RegisterNetEvent(eventName, function(...)
+			if source == '' then return end
+			local source = source
+
+			if isRateLimited(source, eventName, timeout, noWarn) then return end
+			setRateLimit(source, eventName, timeout)
+
+			fn(...)
+		end)
+	end
 end
 
 for i = 1, GetNumResourceMetadata(cache.resource, 'ox_lib') do
