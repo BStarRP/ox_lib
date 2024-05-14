@@ -258,7 +258,7 @@ if service == 'loki' then
         local payload = {
             stream = {
                 server = hostname,
-                resource = cache.resource,
+                resource = resource or cache.resource,
                 event = event
             },
             values = {
