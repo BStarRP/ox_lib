@@ -1,13 +1,21 @@
-QBCore = nil
+local QBCore = nil
+local PlayerData = nil
+
 CreateThread(function()
-	while QBCore == nil do
-		Wait(0)
-		TriggerEvent('QBCore:GetObject', function(obj) QBCore = obj end)
+	while GetResourceState('qb-core') ~= 'started' do
+		Wait(100)
 	end
+	while not QBCore do
+		QBCore = exports['qb-core']:GetCoreObject()
+		Wait(100)
+	end
+	cache:set('core', QBCore)
 end)
 
+	
 RegisterNetEvent('QBCore:Client:UpdateObject', function()
 	QBCore = exports['qb-core']:GetCoreObject()
+	cache:set('core', QBCore)
 end)
 
 RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function()
@@ -75,7 +83,6 @@ CreateThread(function()
 		Wait(100)
 	end
 	local serverId = GetPlayerServerId(cache.playerId)
-	local PlayerData = nil
 	cache:set('serverId', serverId)
 	cache:set('isServer', IsDuplicityVersion())
 	cache:set('isClient', not cache.isServer)
