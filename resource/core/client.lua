@@ -1,5 +1,11 @@
-QBCore = exports['qb-core']:GetCoreObject()
-	
+QBCore = nil
+CreateThread(function()
+	while QBCore == nil do
+		Wait(0)
+		TriggerEvent('QBCore:GetObject', function(obj) QBCore = obj end)
+	end
+end)
+
 RegisterNetEvent('QBCore:Client:UpdateObject', function()
 	QBCore = exports['qb-core']:GetCoreObject()
 end)
