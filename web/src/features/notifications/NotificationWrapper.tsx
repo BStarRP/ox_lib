@@ -80,11 +80,6 @@ const durationCircle = keyframes({
   '100%': { strokeDasharray: `${15.1 * 2 * Math.PI}, 0` },
 });
 
-const durationCircle = keyframes({
-  '0%': { strokeDasharray: `0, ${15.1 * 2 * Math.PI}` },
-  '100%': { strokeDasharray: `${15.1 * 2 * Math.PI}, 0` },
-});
-
 const Notifications: React.FC = () => {
   const { classes } = useStyles();
   const [toastKey, setToastKey] = useState(0);
@@ -115,25 +110,26 @@ const Notifications: React.FC = () => {
     if (!data.icon) {
       switch (data.type) {
         case 'error':
-          data.icon = 'square-xmark';
+          data.icon = 'hexagon-xmark';
           break;
         case 'success':
-          data.icon = 'square-check';
+          data.icon = 'shield-check';
           break;
         case 'warn':
-          data.icon = 'triangle-exclamation';
+          data.icon = 'diamond-exclamation';
           break;
         case 'ambulance':
           data.icon = 'truck-medical';
           break;
         case 'police':
-          data.icon = 'building-shield';
+          data.icon = 'user-police';
           break;
-        default:           
+        default:
           data.icon = 'circle-info';
           break;
       }
     }
+
     if (!data.iconColor) {
       switch (data.type) {
         case 'error':

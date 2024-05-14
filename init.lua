@@ -261,7 +261,7 @@ else
     local rateLimits = {}
 
 	local function isRateLimited(source, eventName, timeout, noWarn)
-		if rateLimits[source]?[eventName] then
+        if rateLimits[source] and rateLimits[source][eventName] then
 			if (GetGameTimer() - rateLimits[source][eventName]) < timeout + 10 then
 				if not noWarn then warn(('%s (%s) was rate limited on event %s. Executed multiple events within %sms'):format(GetPlayerName(source), source, eventName, timeout)) end
 				return true
