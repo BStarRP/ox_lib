@@ -15,6 +15,16 @@ function lib.showTextUI(text, options)
 
     if not options then options = {} end
 
+    options.positon = options.position or "right-center"
+    options.icon = options.icon or 'arrow-right'
+    options.iconColor = options.iconColor or '#ed5007'
+    options.style = options.style or {
+        borderRadius = '4px 4px 0 0',
+        borderBottom = '2px solid #ed5007',
+        backgroundColor = '#2b2b2bE0',
+        color = 'white'
+    }
+
     options.text = text
     currentText = text
 
