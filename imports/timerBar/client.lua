@@ -1,5 +1,3 @@
-@ -0,0 +1,39 @@
----Load a scaleform movie. When called from a thread, it will yield until it has loaded.
 ---@param time number? time in seconds for timer bar to run.
 ---@param text Title of the timer bar.
 ---@param cb Callback to run when finished.
