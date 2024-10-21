@@ -44,3 +44,4 @@ function lib.event.register(cb, eventName, eventResource, isLocal)
 end
 
 return lib.event
+--test
