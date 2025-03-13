@@ -6,7 +6,7 @@ settings:
 
 patchedDependencies:
   react-hot-toast@2.4.0:
-    hash: 6dztgcaza2bodipt2i5a4is4mu
+    hash: 3391686b256a626d291d0836e7fa89ba4597f6bbe78255888c798c1de94fcb77
     path: patches/react-hot-toast@2.4.0.patch
 
 importers:
@@ -21,13 +21,13 @@ importers:
         version: 6.3.0
       '@fortawesome/free-brands-svg-icons':
         specifier: ^6.3.0
-        version: 6.5.2
+        version: 6.3.0
       '@fortawesome/pro-regular-svg-icons':
         specifier: ^6.3.0
-        version: 6.5.2
+        version: 6.7.2
       '@fortawesome/pro-solid-svg-icons':
         specifier: ^6.3.0
-        version: 6.5.2
+        version: 6.7.2
       '@fortawesome/react-fontawesome':
         specifier: ^0.1.19
         version: 0.1.19(@fortawesome/fontawesome-svg-core@6.3.0)(react@18.2.0)
@@ -66,7 +66,7 @@ importers:
         version: 7.43.1(react@18.2.0)
       react-hot-toast:
         specifier: ^2.4.0
-        version: 2.4.0(patch_hash=6dztgcaza2bodipt2i5a4is4mu)(csstype@3.1.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        version: 2.4.0(patch_hash=3391686b256a626d291d0836e7fa89ba4597f6bbe78255888c798c1de94fcb77)(csstype@3.1.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react-markdown:
         specifier: ^8.0.1
         version: 8.0.5(@types/react@18.0.28)(react@18.2.0)
@@ -563,20 +563,24 @@ packages:
     resolution: {integrity: sha512-4BC1NMoacEBzSXRwKjZ/X/gmnbp/HU5Qqat7E8xqorUtBFZS+bwfGH5/wqOC2K6GV0rgEobp3OjGRMa5fK9pFg==}
     engines: {node: '>=6'}
 
+  '@fortawesome/fontawesome-common-types@6.7.2':
+    resolution: {integrity: sha512-Zs+YeHUC5fkt7Mg1l6XTniei3k4bwG/yo3iFUtZWd/pMx9g3fdvkSK9E0FOC+++phXOka78uJcYb8JaFkW52Xg==, tarball: https://npm.fontawesome.com/@fortawesome/fontawesome-common-types/-/6.7.2/fontawesome-common-types-6.7.2.tgz}
+    engines: {node: '>=6'}
+
   '@fortawesome/fontawesome-svg-core@6.3.0':
     resolution: {integrity: sha512-uz9YifyKlixV6AcKlOX8WNdtF7l6nakGyLYxYaCa823bEBqyj/U2ssqtctO38itNEwXb8/lMzjdoJ+aaJuOdrw==}
     engines: {node: '>=6'}
 
   '@fortawesome/free-brands-svg-icons@6.3.0':
-    resolution: {integrity: sha512-xI0c+a8xnKItAXCN8rZgCNCJQiVAd2Y7p9e2ND6zN3J3ekneu96qrePieJ7yA7073C1JxxoM3vH1RU7rYsaj8w==}
+    resolution: {integrity: sha512-xI0c+a8xnKItAXCN8rZgCNCJQiVAd2Y7p9e2ND6zN3J3ekneu96qrePieJ7yA7073C1JxxoM3vH1RU7rYsaj8w==, tarball: https://npm.fontawesome.com/@fortawesome/free-brands-svg-icons/-/6.3.0/free-brands-svg-icons-6.3.0.tgz}
     engines: {node: '>=6'}
 
-  '@fortawesome/free-regular-svg-icons@6.3.0':
-    resolution: {integrity: sha512-cZnwiVHZ51SVzWHOaNCIA+u9wevZjCuAGSvSYpNlm6A4H4Vhwh8481Bf/5rwheIC3fFKlgXxLKaw8Xeroz8Ntg==}
+  '@fortawesome/pro-regular-svg-icons@6.7.2':
+    resolution: {integrity: sha512-cJolK4K/s56mHAqOyno24SmjviHqSqG9ZfckBKCpWjJlgDexi61EfET5wWbmmEot6/BqasFjw9S6tudFQUL/PQ==, tarball: https://npm.fontawesome.com/@fortawesome/pro-regular-svg-icons/-/6.7.2/pro-regular-svg-icons-6.7.2.tgz}
     engines: {node: '>=6'}
 
-  '@fortawesome/free-solid-svg-icons@6.3.0':
-    resolution: {integrity: sha512-x5tMwzF2lTH8pyv8yeZRodItP2IVlzzmBuD1M7BjawWgg9XAvktqJJ91Qjgoaf8qJpHQ8FEU9VxRfOkLhh86QA==}
+  '@fortawesome/pro-solid-svg-icons@6.7.2':
+    resolution: {integrity: sha512-SY2aP8d7uBlg1rNYznA9w9SVnnQhu3x/C7CCKQYcOGOC1YtPPHgIJhxKGbSzm6RkeJs1HVEfAkORX3J0XB5K9Q==, tarball: https://npm.fontawesome.com/@fortawesome/pro-solid-svg-icons/-/6.7.2/pro-solid-svg-icons-6.7.2.tgz}
     engines: {node: '>=6'}
 
   '@fortawesome/react-fontawesome@0.1.19':
@@ -2102,6 +2106,8 @@ snapshots:
 
   '@fortawesome/fontawesome-common-types@6.3.0': {}
 
+  '@fortawesome/fontawesome-common-types@6.7.2': {}
+
   '@fortawesome/fontawesome-svg-core@6.3.0':
     dependencies:
       '@fortawesome/fontawesome-common-types': 6.3.0
@@ -2110,13 +2116,13 @@ snapshots:
     dependencies:
       '@fortawesome/fontawesome-common-types': 6.3.0
 
-  '@fortawesome/free-regular-svg-icons@6.3.0':
+  '@fortawesome/pro-regular-svg-icons@6.7.2':
     dependencies:
-      '@fortawesome/fontawesome-common-types': 6.3.0
+      '@fortawesome/fontawesome-common-types': 6.7.2
 
-  '@fortawesome/free-solid-svg-icons@6.3.0':
+  '@fortawesome/pro-solid-svg-icons@6.7.2':
     dependencies:
-      '@fortawesome/fontawesome-common-types': 6.3.0
+      '@fortawesome/fontawesome-common-types': 6.7.2
 
   '@fortawesome/react-fontawesome@0.1.19(@fortawesome/fontawesome-svg-core@6.3.0)(react@18.2.0)':
     dependencies:
@@ -3068,7 +3074,7 @@ snapshots:
     dependencies:
       react: 18.2.0
 
-  react-hot-toast@2.4.0(patch_hash=6dztgcaza2bodipt2i5a4is4mu)(csstype@3.1.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+  react-hot-toast@2.4.0(patch_hash=3391686b256a626d291d0836e7fa89ba4597f6bbe78255888c798c1de94fcb77)(csstype@3.1.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
       goober: 2.1.12(csstype@3.1.1)
       react: 18.2.0
