@@ -1,5 +1,5 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
 import './index.css';
 import App from './App';
 import { fas } from '@fortawesome/pro-solid-svg-icons';
@@ -9,6 +9,7 @@ import { IconPack, library } from '@fortawesome/fontawesome-svg-core';
 import { isEnvBrowser } from './utils/misc';
 import LocaleProvider from './providers/LocaleProvider';
 import ConfigProvider from './providers/ConfigProvider';
+import ErrorBoundary from './providers/errorBoundary';
 
 library.add(fas as IconPack, far as IconPack, fab as IconPack);
 
@@ -23,12 +24,15 @@ if (isEnvBrowser()) {
 }
 
 const root = document.getElementById('root');
-ReactDOM.createRoot(root!).render(
-  <React.StrictMode>
+
+createRoot(root!).render(
+  <StrictMode>
     <LocaleProvider>
       <ConfigProvider>
-        <App />
+        <ErrorBoundary>
+          <App />
+        </ErrorBoundary>
       </ConfigProvider>
     </LocaleProvider>
-  </React.StrictMode>
+  </StrictMode>
 );
