@@ -1,7 +1,6 @@
 local glm = require 'glm'
 
 ---@class ZoneProperties
----@field coords vector3
 ---@field debug? boolean
 ---@field debugColour? vector4
 ---@field onEnter fun(self: CZone)?
@@ -101,6 +100,7 @@ end
 local insideZones = lib.context == 'client' and {} --[[@as table<number, CZone>]]
 local exitingZones = lib.context == 'client' and lib.array:new() --[[@as Array<CZone>]]
 local enteringZones = lib.context == 'client' and lib.array:new() --[[@as Array<CZone>]]
+local nearbyZones = lib.array:new() --[[@as Array<CZone>]]
 local glm_polygon_contains = glm.polygon.contains
 local tick
 
@@ -121,23 +121,27 @@ end
 CreateThread(function()
     if lib.context == 'server' then return end
 
-    local lastZones = {}
-
     while true do
         local coords = GetEntityCoords(cache.ped)
-        local zones = lib.grid.getNearbyEntries(coords, function(entry) return entry.remove == removeZone end) --[[@as CZone[] ]]
+        local zones = lib.grid.getNearbyEntries(coords, function(entry) return entry.remove == removeZone end) --[[@as Array<CZone>]]
         local cellX, cellY = lib.grid.getCellPosition(coords)
         cache.coords = coords
 
         if cellX ~= cache.lastCellX or cellY ~= cache.lastCellY then
-            for i = 1, #lastZones do
-                local zone = lastZones[i]
+            for i = 1, #nearbyZones do
+                local zone = nearbyZones[i]
 
-                zone.insideZone = false
-                insideZones[zone.id] = nil
+                if zone.insideZone then
+                    local contains = zone.thickness and glm_polygon_contains(zone.polygon, coords, zone.thickness / 4) or #(zone.coords - coords) < zone.radius
+
+                    if not contains then
+                        zone.insideZone = false
+                        insideZones[zone.id] = nil
+                    end
+                end
             end
 
-            lastZones = zones
+            nearbyZones = zones
             cache.lastCellX = cellX
             cache.lastCellY = cellY
         end
@@ -343,6 +347,7 @@ lib.zones = {}
 
 ---@class PolyZone : ZoneProperties
 ---@field points vector3[]
+---@field thickness? number
 
 ---@param data PolyZone
 ---@return CZone
@@ -422,9 +427,9 @@ function lib.zones.poly(data)
 end
 
 ---@class BoxZone : ZoneProperties
----@field size number | vector3
----@field thickness? number
----@field rotation? vector4
+---@field coords vector3
+---@field size? vector3
+---@field rotation? number | vector3 | vector4 | matrix
 
 ---@param data BoxZone
 ---@return CZone
@@ -432,7 +437,7 @@ function lib.zones.box(data)
     data.id = #Zones + 1
     data.coords = convertToVector(data.coords)
     data.size = data.size and convertToVector(data.size) / 2 or vec3(2)
-    data.thickness = data.size.z * 2 or 4
+    data.thickness = data.size.z * 2
     data.rotation = quat(data.rotation or 0, vec3(0, 0, 1))
     data.__type = 'box'
     data.width = data.size.x * 2
@@ -448,6 +453,7 @@ function lib.zones.box(data)
 end
 
 ---@class SphereZone : ZoneProperties
+---@field coords vector3
 ---@field radius? number
 
 ---@param data SphereZone
@@ -465,5 +471,7 @@ end
 function lib.zones.getAllZones() return Zones end
 
 function lib.zones.getCurrentZones() return insideZones end
+
+function lib.zones.getNearbyZones() return nearbyZones end
 
 return lib.zones
