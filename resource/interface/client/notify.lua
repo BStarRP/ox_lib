@@ -35,6 +35,40 @@ function lib.notify(data)
     data.sound = nil
     data.position = data.position or settings.notification_position
 
+    --default icon color
+    local defaultIconColor = {
+        info = '#1c75d2',
+        police = '#1c75d2',
+        ambulance = '#bf1d1d',
+        warn = '#ee8a08',
+        success = '#20bb44',
+        error = '#bf1d1d'
+    }
+
+    data.iconColor = data.iconColor or defaultIconColor[data.type] or '#1c75d2' -- Use custom icon color if provided, else use predefined icon color, default to blue
+
+    --default icon animations
+    local iconAnimations = {
+        info = 'beatFade',
+        police = 'pulse',
+        ambulance = 'pulse',
+        warn = 'bounce',
+        success = 'beat',
+        error = 'shake'
+    }
+
+    data.iconAnimation = data.iconAnimation or iconAnimations[data.type] or 'beatFade' -- Use custom icon animation if provided, else use predefined icon animation, default to beatFade
+
+    --default styling
+    local style = {
+        borderRadius = '4px 4px 0 0',
+        borderBottom = '2px solid ' .. data.iconColor, -- Use selected color for the border
+        backgroundColor = '#2b2b2bE0',
+        color = 'white'
+    }
+
+    data.style = data.style or style
+
     SendNUIMessage({
         action = 'notify',
         data = data
