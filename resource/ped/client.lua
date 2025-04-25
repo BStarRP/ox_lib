@@ -7,12 +7,6 @@ AddStateBagChangeHandler('initPed', '', function(bagName, _, props)
     end
 
     lib.requestModel(props.model)
-    if NetworkGetEntityOwner(ent) ~= cache.playerId then return end
-
-    if props.static then
-        SetEntityInvincible(ent, true)
-        SetBlockingOfNonTemporaryEvents(ent, true)
-    end
 
     if props.nametag then
         local tag = CreateFakeMpGamerTag(ent, props.nametag, false, false, '', 0)
@@ -20,6 +14,20 @@ AddStateBagChangeHandler('initPed', '', function(bagName, _, props)
         SetMpGamerTagColour(tag, 0, 48)
         SetMpGamerTagAlpha(tag, 0, 155)
         Entity(ent).state.nametag = tag
+    end
+
+    if props.targetOptions then
+        exports.ox_target:addLocalEntity(ent, {
+            props.targetOptions
+        })
+    end
+
+
+    if NetworkGetEntityOwner(ent) ~= cache.playerId then return end
+
+    if props.static then
+        SetEntityInvincible(ent, true)
+        SetBlockingOfNonTemporaryEvents(ent, true)
     end
 
     Entity(ent).state:set('initPed', nil, true)
